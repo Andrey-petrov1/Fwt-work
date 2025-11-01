@@ -26,7 +26,7 @@
   justify-content: center;
 height: 31%;
 
-  background: #000;
+  
 
   padding: 18px 10px 18px 18px;
   width: 70%;   
@@ -34,6 +34,7 @@ height: 31%;
     
   gap: 6px;
 
+  
 
   &::before {
     content: "";
@@ -42,7 +43,7 @@ height: 31%;
     top: 18px;
     width: 2px;
     height: 42px;
-    background-color: #e6b422;
+   
     border-radius: 1px;
   }
 
@@ -51,7 +52,7 @@ height: 31%;
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
-    color: #fff;
+
     line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;
@@ -62,7 +63,7 @@ height: 31%;
   p {
     margin: 4px 0 0;
     font-size: 13px;
-    color: #e6b422;
+ 
     line-height: 1.2;
     font-weight: 600;
  
@@ -70,3 +71,36 @@ height: 31%;
 }
 }
 
+.cardText-light {
+  color: red;
+}
+
+  .info-dark {
+    background: #121212;
+
+    h3 {
+      color: #DEDEDE;
+    }
+
+    p {
+      color: #AB8956;
+    }
+     &::before {
+ background-color: #AB8956;
+     }
+  }
+
+    .info-light {
+    background: #ffffff;
+
+    h3 {
+      color: #121212;
+    }
+
+    p {
+      color: #9B4B4B;
+    }
+      &::before {
+     background-color: #9B4B4B;
+     }
+  }

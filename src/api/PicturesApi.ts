@@ -1,23 +1,27 @@
-import axios from 'axios';
+import { api } from '../configs/api.ts'
+import type { Painting } from '../configs/interfaces.ts'
+import { API_CONSTANTS } from '../configs/constants.ts';
 
-const api = axios.create({
-  baseURL: 'https://test-front.framework.team',
-});
-
-
-export interface Painting {
-  id: number;
-  name: string;       
-  created: string;    
-  imageUrl: string;   
-}
-
-
-export async function getPaintings() {
+export async function getPaintings(page = API_CONSTANTS.CURRENT_PAGE, searchQuery: string, limit = API_CONSTANTS.INITIAL_LIMIT, ) {
   const { data } = await api.get<Painting[]>('/paintings', {
     params: {
-      _page: 1,
-      _limit: 6,
+       _page: page,
+      _limit: limit,
+      q: searchQuery
+    },
+  });
+  return data;
+}
+
+export async function getAllPaintings() {
+  const { data } = await api.get<Painting[]>('/paintings');
+  return data;
+}
+
+export async function getPaintingById(id: number) {
+  const { data } = await api.get<Painting>('/paintings', {
+    params: {
+      id: id,
     },
   });
   return data;
