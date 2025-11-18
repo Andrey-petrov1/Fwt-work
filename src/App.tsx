@@ -2,7 +2,7 @@ import { useState } from "react";
 import Gallery from "./pages/Gallery";
 import Header from "./components/Header/Header";
 import ThemeContext from "./context/themeContext";
-import "./App.module.scss";
+import "./App.scss";
 import clsx from "clsx";
 
 function App() {
