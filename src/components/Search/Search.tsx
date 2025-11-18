@@ -1,7 +1,9 @@
 import { useState, type ChangeEvent } from 'react';
 import clsx from 'clsx';
-import SearchLogo from '../Svg/Logo/SearchLogo/search_icon'
-
+import SearchLightLogo from '../Svg/Logo/SearchLogo/SearchLightLogo'
+import SearchDarkLogo from '../Svg/Logo/SearchLogo/SearchDarkLogo'
+import XDark from '../Svg/Logo/X/XDark';
+import XLight from '../Svg/Logo/X/XLight';
 import styles from './SearchBar.module.scss';
 
 interface SearchBarProps {
@@ -17,6 +19,11 @@ export default function SearchBar({ onSearch, theme }: SearchBarProps) {
     onSearch(e.target.value);
   };
 
+ const handleClear = () => {
+    setQuery('');
+    onSearch('');
+  };
+
   return (
      <div
       className={clsx(
@@ -27,9 +34,9 @@ export default function SearchBar({ onSearch, theme }: SearchBarProps) {
     }
   )}
 
-  //написано иначе чем в пагинации, как менять тему и у свг
+
     >
-       <SearchLogo />
+      {theme === 'dark' ? <SearchDarkLogo /> : <SearchLightLogo />}
       <input
     
         type="text"
@@ -37,6 +44,17 @@ export default function SearchBar({ onSearch, theme }: SearchBarProps) {
         value={query}
         onChange={handleChange}
       />
+
+      {query && (
+        <button
+          type="button"
+          onClick={handleClear}
+          className={styles.clearButton}
+          aria-label="Clear search"
+        >
+        {theme === 'dark' ? <XDark /> : <XLight />}
+        </button>
+      )}
     </div>
   );
 }

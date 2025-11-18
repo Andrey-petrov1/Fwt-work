@@ -2,22 +2,27 @@
   width: 100%;
   max-width: 336px;
   height: auto;
-
   display: flex;
   align-items: center;
   gap: 8px;
-
   border: 1px solid;
   border-radius: 8px;
   padding: 8px 12px;
 
   input {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: 0;
+
     background: transparent;
     border: none;
     outline: none;
     font-size: 14px;
     width: 180px;
-
+    flex: 1;
     &::placeholder {
       color: inherit;
       opacity: 0.7;
@@ -32,10 +37,13 @@
 
 .search-light {
   background-color: #ffffff;
-  border-color: #DEDEDE;
+  border-color: #dedede;
 
   input {
-    color: #1a1818;
+    color: #575757;
+    &::placeholder {
+      color: #9c9c9c;
+    }
   }
 
   .icon {
@@ -43,16 +51,30 @@
   }
 }
 
-
 .search-dark {
   background-color: #1a1818;
-  border-color: #1A1818;
+  border-color: #1a1818;
 
   input {
-    color: #ffffff;
+    color: #dedede;
+    &::placeholder {
+      color: #575757;
+    }
   }
 
   .icon {
     fill: #888;
+  }
+}
+
+.clearButton {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &:hover {
+    opacity: 1;
   }
 }

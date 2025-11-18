@@ -1,21 +1,32 @@
 import { api } from '../configs/api.ts'
 import type { Painting } from '../configs/interfaces.ts'
-import { API_CONSTANTS } from '../configs/constants.ts';
 
-export async function getPaintings(page = API_CONSTANTS.CURRENT_PAGE, searchQuery: string, limit = API_CONSTANTS.INITIAL_LIMIT, ) {
-  const { data } = await api.get<Painting[]>('/paintings', {
-    params: {
-       _page: page,
-      _limit: limit,
-      q: searchQuery
-    },
-  });
-  return data;
+type GetPaintingsOptions = {
+  page?: number
+  limit?: number
+  search?: string
 }
 
-export async function getAllPaintings() {
-  const { data } = await api.get<Painting[]>('/paintings');
-  return data;
+export async function getAllPaintings(options: GetPaintingsOptions = {}) {
+  const { page = 1, limit = 9, search = '' } = options;
+
+
+  const res = await api.get<Painting[]>('/paintings', {
+    params: {
+      _page: page,
+      _limit: limit,
+      ...(search ? { q: search } : {}),
+    },
+  });
+
+
+  const totalCountHeader = res.headers?.['x-total-count'] ?? res.headers?.['X-Total-Count'];
+  const total = totalCountHeader ? Number(totalCountHeader) : res.data.length;
+
+  return {
+    paintings: res.data,
+    total,
+  };
 }
 
 export async function getPaintingById(id: number) {
